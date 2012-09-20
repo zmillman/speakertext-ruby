@@ -62,7 +62,7 @@ s = SpeakerText::Source.new({
 source = SpeakerText::Source.new({
   :title => "How To Skin A Cat",
   :url => "http://example.com/videos/cat_skinning_tutorial.mp4",
-  :annotation => "Note for the transcriber"
+  :annotation => "Dear transcriber, do not be alarmed. No animals were harmed."
 })
 
 # Submit source for transcription
@@ -71,7 +71,7 @@ source.transcript_id # => "TnXuza158n"
 
 # Fetch a transcript
 t = source.transcript(:format => 'html') # Returns the html version (for CaptionBox)
-t = source.transcript(:fomrat => 'txt')  # Returns the txt version of the transcript
+t = source.transcript(:format => 'txt')  # Returns the txt version of the transcript
 
 # Check the status of a transcript
 t.in_progress? # Returns true if the transcription isn't finished
