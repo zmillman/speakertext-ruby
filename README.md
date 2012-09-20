@@ -68,11 +68,17 @@ source = SpeakerText::Source.new({
 # Submit source for transcription
 source.transcribe!
 source.transcript_id # => "TnXuza158n"
-source.message # => "Transcription jobs created."
 
 # Fetch a transcript
-t = source.transcript                    # Returns the txt version of the transcript
 t = source.transcript(:format => 'html') # Returns the html version (for CaptionBox)
+t = source.transcript(:fomrat => 'txt')  # Returns the txt version of the transcript
+
+# Check the status of a transcript
+t.in_progress? # Returns true if the transcription isn't finished
+t.completed?   # Returns true if the transcript is finished
+
+# Read a transcript
+t.content # => "There are many ways to skin a cat..."
 
 ```
 

@@ -13,8 +13,7 @@ module SpeakerText
     
     # Initialize a new Transcript
     #
-    # id     - the transcript id of this transcript
-    # 
+    # http_response - the HTTP response from a GET request to the SpeakerText API
     def initialize(http_response)
       self.response = http_response
     end
