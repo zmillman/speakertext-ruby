@@ -1,11 +1,12 @@
-require 'addressable/uri'
-
 module SpeakerText
   class Configuration
     require 'speakertext/version'
     
     # SpeakerText credentials
     attr_accessor :api_key
+    
+    # Default option settings
+    attr_accessor :default_pingback_url
     
     # The URL of the API server
     attr_accessor :scheme
@@ -20,12 +21,9 @@ module SpeakerText
       @user_agent = "ruby-#{SpeakerText::VERSION}"
     end
     
-    def base_url
-      Addressable::URI.new(
-        :scheme => self.scheme,
-        :host => self.host,
-        :path => self.base_path
-      )
+    def base_uri
+      "#{scheme}://#{host}#{base_path}"
     end
+
   end
 end

@@ -14,5 +14,6 @@ Gem::Specification.new do |s|
   s.homepage    = 'http://github.com/zmillman/speakertext-ruby'
   
   # Dependencies
-  s.add_dependency 'addressable', '>=2.2.4'
+  s.add_dependency 'httparty'
+  s.add_dependency 'json'
 end

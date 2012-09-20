@@ -1,9 +1,11 @@
 speakertext-ruby
 ================
 
-An unofficial SpeakerText gem. This description is just a draft of the eventual functionality. Nothing works yet.
+An unofficial SpeakerText gem.
 
-This is an unofficial SpeakerText rubygem. It wraps SpeakerText's [Version 1 API](https://api.speakertext.com/v1).
+This gem wraps SpeakerText's [Version 1 API](https://api.speakertext.com/v1) for submitting files for transcription.
+
+IMPORTANT: This gem is still under development and has not really been tested.
 
 Installation
 ------------
@@ -34,8 +36,8 @@ end
 
 Get your API key from the [SpeakerText account page](http://speakertext.com/account).
 
-Example Standalone Usage
-------------------------
+Example Usage
+-------------
 
 ```ruby
 %w(rubygems speakertext).each {|lib| require lib}
@@ -44,8 +46,24 @@ SpeakerText.configure do |config|
 	config.api_key = 'YOUR_API_KEY_HERE'
 end
 
+# Define a source from a platform
+s = SpeakerText::Source.new
+
+# Define a source from a URL
+source = SpeakerText::Source.new({
+  :title => "How To Skin A Cat",
+  :url => "http://example.com/videos/cat_skinning_tutorial.mp4",
+  :annotation => "Note for the transcriber"
+})
+
+# Submit source for transcription
+source.transcribe!
+source.transcript_id # => "TnXuza158n"
+source.message # => "Transcription jobs created."
+
 # Fetch a transcript
-SpeakerText.transcripts.get_transcript(123, :format => :srt)
+t = source.transcript                    # Returns the 'txt' version of the transcript
+t = source.transcript(:format => 'html') # Returns the 'html' version of the transcript (for CaptionBox)
 
 ```
 
@@ -63,4 +81,3 @@ Contributing
 
 Copyright (c) 2012 Zach Millman. See LICENSE.txt for
 further details.
-

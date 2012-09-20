@@ -1,0 +1,1 @@
+require 'speakertext'; SpeakerText.configure{|c| c.api_key='9b531d99c4887307afcf4ab1e67b1cbd7aeb2bf3'}
