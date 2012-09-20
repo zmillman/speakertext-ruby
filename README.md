@@ -30,7 +30,8 @@ If you're using SpeakerText in a rails app, drop this into `config/initializers/
 
 ```ruby
 SpeakerText.configure do |config|
-  config.api_key = '1234567890abcdef1234567890abcdef12345678'     # required
+  config.api_key = '1234567890abcdef1234567890abcdef12345678'               # required
+  config.default_pingback_url = 'http://my_app.com/api/transcript_receiver' # optional
 end
 ```
 
