@@ -46,8 +46,16 @@ SpeakerText.configure do |config|
 	config.api_key = 'YOUR_API_KEY_HERE'
 end
 
-# Define a source from a platform
-s = SpeakerText::Source.new
+# Define a source from a platform (YouTube, in this example)
+s = SpeakerText::Source.new({
+  :platform => "youtube",
+  :video_id => "http://www.youtube.com/watch?v=_OBlgSz8sSM"
+})
+
+# Define a source from a saved transcript_id
+s = SpeakerText::Source.new({
+  :transcript_id => 'TnXuza158n'
+})
 
 # Define a source from a URL
 source = SpeakerText::Source.new({
@@ -62,8 +70,8 @@ source.transcript_id # => "TnXuza158n"
 source.message # => "Transcription jobs created."
 
 # Fetch a transcript
-t = source.transcript                    # Returns the 'txt' version of the transcript
-t = source.transcript(:format => 'html') # Returns the 'html' version of the transcript (for CaptionBox)
+t = source.transcript                    # Returns the txt version of the transcript
+t = source.transcript(:format => 'html') # Returns the html version (for CaptionBox)
 
 ```
 
