@@ -1,0 +1,16 @@
+PATH
+  remote: .
+  specs:
+    speakertext (0.01)
+      addressable (>= 2.2.4)
+
+GEM
+  remote: http://rubygems.org/
+  specs:
+    addressable (2.3.2)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  speakertext!
