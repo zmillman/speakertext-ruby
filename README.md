@@ -92,7 +92,8 @@ Contributing
 * Commit and push until you are happy with your contribution.
 * Make sure to add tests for it. This is important so I don't break it in a future version unintentionally.
 
-== Copyright
+Copyright
+---------
 
 Copyright (c) 2012 Zach Millman. See LICENSE.txt for
 further details.
