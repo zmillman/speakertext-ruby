@@ -51,7 +51,7 @@ module SpeakerText
           :sources => [self.source_object_hash].to_json
         })
         query_opts[:pingback_url] ||= SpeakerText.configuration.default_pingback_url
-        self.transcribe_response = Transcript.post("/transcripts", :query => query_opts)
+        self.transcribe_response = self.class.post("/transcripts", :query => query_opts)
       end
     end
     
