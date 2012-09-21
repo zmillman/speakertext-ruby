@@ -90,9 +90,9 @@ module SpeakerText
     # Returns a hash object used for the POST request's query parameters
     def source_object_hash
       if platform
-        return Hash[%w(platform video_id annotation).collect{|name| [name.to_sym, instance_variable_get("@{name}")]}]
+        return Hash[%w(platform video_id annotation).collect{|name| [name.to_sym, instance_variable_get("@#{name}")]}]
       elsif url
-        return Hash[%w(url title ref_id thumb_url annotation).collect{|name| [name.to_sym, instance_variable_get("@{name}")]}]
+        return Hash[%w(url title ref_id thumb_url annotation).collect{|name| [name.to_sym, instance_variable_get("@#{name}")]}]
       else
         raise 'Invalid source object configuration -- must be configured for a platform or url'
       end
