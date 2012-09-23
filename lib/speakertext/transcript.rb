@@ -3,7 +3,7 @@
 module SpeakerText
   class Transcript
     
-    # Stores
+    # Stores the response
     attr_accessor :response
     
     attr_accessor :content
