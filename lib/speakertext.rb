@@ -17,9 +17,12 @@ module SpeakerText
 
       yield(configuration) if block_given?
 
-      # Use the configuration to set up HTTParty        
+      # Use the configuration to set up HTTParty for Source and Transcript
       Source.base_uri     configuration.base_uri
       Source.basic_auth   configuration.api_key, 'x' # using a dummy password
+      
+      Transcript.base_uri   configuration.base_uri
+      Transcript.basic_auth configuration.api_key, 'x'
     end    
   end
 

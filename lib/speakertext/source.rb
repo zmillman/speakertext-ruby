@@ -78,14 +78,15 @@ module SpeakerText
     
     # Fetches data from the api and loads the content and status
     #
-    # options - The Hash options used to choose the format (default: {}):
-    #           :format - the file format of this transcript. Valid values are 'dfxp', 'txt', 'xml', or 'html' (default is 'txt')
+    # options - The Hash options used to initialize the Transcript (see SpeakerText::Transcript for accepted values)
     #
     # Returns a SpeakerText::Transcript object with data from the API
     def transcript(options = {})
-      raise 'Must have a transcript_id in order to fetch from the server' unless transcript_id
-      response = self.class.get("/transcripts/#{transcript_id}", :query => options)
-      return Transcript.new(response)
+      options[:transcript_id] ||= transcript_id
+      
+      transcript = Transcript.new(options)
+      transcript.download!
+      return transcript
     end
     
     protected

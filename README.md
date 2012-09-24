@@ -62,7 +62,7 @@ s = SpeakerText::Source.new({
 source = SpeakerText::Source.new({
   :title => "How To Skin A Cat",
   :url => "http://example.com/videos/cat_skinning_tutorial.mp4",
-  :annotation => "Dear transcriber, do not be alarmed. No animals were harmed."
+  :annotation => "Dear transcriber, do not be alarmed. No animals were harmed." # optional
 })
 
 # Submit source for transcription
@@ -79,6 +79,9 @@ t.completed?   # Returns true if the transcript is finished
 
 # Read a transcript
 t.content # => "There are many ways to skin a cat..."
+
+# get a Tempfile (for sending to Paperclip)
+t.to_file # => #<File:/var/folders/ml/vxp5tyjx34d9vj6n661wkmx00000gn/T/transcript20120923-3416-xtmolj.txt> 
 
 ```
 

@@ -1,21 +1,37 @@
 # A wrapping class for GET responses from the API
+require 'tempfile'
+require 'httparty'
 
 module SpeakerText
   class Transcript
+    include HTTParty
     
     # Stores the response
     attr_accessor :response
+    
+    attr_accessor :format
     
     attr_accessor :content
     attr_accessor :transcript_id
     attr_accessor :message
     attr_accessor :status
     
+    attr_accessor :content_file
+    
     # Initialize a new Transcript
     #
-    # http_response - the HTTP response from a GET request to the SpeakerText API
-    def initialize(http_response)
-      self.response = http_response
+    # args - Hash of attributes to initialize this Transcript with
+    #        :format - the file format of this transcript. Valid values are 'dfxp', 'txt', 'xml', or 'html' (default is 'txt')
+    def initialize(args = {})
+      self.format = args[:format] || 'txt'
+      self.transcript_id = args[:transcript_id]
+      self.response = args[:http_response] if args[:http_response]
+    end
+    
+    def download!
+      raise 'Must have a transcript_id in order to fetch from the server' unless self.transcript_id
+      
+      self.response = self.class.get("/transcripts/#{self.transcript_id}", :query => self.to_query_options)
     end
     
     # Helper method for reading values from an HTTP response
@@ -51,9 +67,17 @@ module SpeakerText
       end
     end
     
-    # Return the content for casts to String
-    def to_s
-      content
+    # Returns a TempFile containing the content of the transcript
+    def to_file
+      if content_file.nil?
+        content_file = Tempfile.new(['transcript', ".#{format}"])
+        content_file.write(self.content)
+      end
+      return content_file
+    end
+    
+    def to_query_options
+      {:format => self.format}
     end
     
     def in_progress?
