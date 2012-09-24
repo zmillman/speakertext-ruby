@@ -80,8 +80,8 @@ t.completed?   # Returns true if the transcript is finished
 # Read a transcript
 t.content # => "There are many ways to skin a cat..."
 
-# get a Tempfile (for sending to Paperclip)
-t.to_file # => #<File:/var/folders/ml/vxp5tyjx34d9vj6n661wkmx00000gn/T/transcript20120923-3416-xtmolj.txt> 
+# Convert to a Tempfile (for sending to Paperclip)
+t.to_file # => #<File:/var/fo...gn/T/transcript20120923-3416-xtmolj.txt>
 
 ```
 
